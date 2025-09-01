@@ -1,6 +1,4 @@
-# Credit Card Fraud Detection (LightGBM, Colab-ready)
-
-[![Open in Colab](https://colab.research.googleusercontent.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Maruf1904002/Brainwave_Matrix_Intern-2/blob/main/Credit_Card_Fraud_Detection_Colab.ipynb)
+# Credit Card Fraud Detection (LightGBM)
 
 Detect fraudulent credit-card transactions using a supervised machine learning pipeline on the popular **ULB/Kaggle Credit Card Fraud Detection** dataset.  
 The notebook is designed for **Google Colab**, pulls the data via **Kaggle API**, trains a **LightGBM** model with class weighting, and reports **PR‑AUC, ROC‑AUC, Precision, Recall, F1**, and **confusion matrices**.
@@ -18,7 +16,7 @@ The notebook is designed for **Google Colab**, pulls the data via **Kaggle API**
 
 ---
 
-## ✅ Current Results (from this repo’s notebook)
+## ✅ Current Results 
 
 Using a stratified 80/20 split, LightGBM (`n_estimators=600`, class_weight=balanced):
 
@@ -34,17 +32,6 @@ Using a stratified 80/20 split, LightGBM (`n_estimators=600`, class_weight=balan
 | **False Positive Rate** | **~0.012%** |
 
 > ℹ️ The “best‑F1” threshold was computed on the test set (demo). For a production‑style evaluation, choose the threshold on a **validation** split and report metrics on the **held‑out test** only.
-
----
-
-## 📁 Repository Structure
-
-```
-Brainwave_Matrix_Intern-2/
-├── Credit_Card_Fraud_Detection_Colab.ipynb   # Main Colab notebook
-├── README.md                                  # This file
-└── (optional) artifacts/                      # Saved figures & reports (see below)
-```
 
 ---
 
