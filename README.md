@@ -1,7 +1,6 @@
 # Credit Card Fraud Detection (LightGBM)
 
-Detect fraudulent credit-card transactions using a supervised machine learning pipeline on the popular **ULB/Kaggle Credit Card Fraud Detection** dataset.  
-The notebook is designed for **Google Colab**, pulls the data via **Kaggle API**, trains a **LightGBM** model with class weighting, and reports **PR‑AUC, ROC‑AUC, Precision, Recall, F1**, and **confusion matrices**.
+Detect fraudulent credit-card transactions using a supervised machine learning pipeline on the popular **ULB/Kaggle Credit Card Fraud Detection** dataset. The notebook is designed for **Google Colab**, pulls the data via **Kaggle API**, trains a **LightGBM** model with class weighting, and reports **PR‑AUC, ROC‑AUC, Precision, Recall, F1**, and **confusion matrices**.
 
 ---
 
