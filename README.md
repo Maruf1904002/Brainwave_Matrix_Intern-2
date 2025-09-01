@@ -45,7 +45,6 @@ Using a stratified 80/20 split, LightGBM (`n_estimators=600`, class_weight=balan
    - train **LightGBM** with class weights
    - compute metrics & plot **ROC/PR** curves and **confusion matrices**
    
-> Prefer a one‑click run? Use `Runtime → Run all` in Colab after uploading `kaggle.json`.
 
 ---
 
