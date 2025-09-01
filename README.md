@@ -60,60 +60,6 @@ Using a stratified 80/20 split, LightGBM (`n_estimators=600`, class_weight=balan
 
 ---
 
-## 📊 Saving Artifacts (optional)
-
-Add this cell at the end of the notebook to save results to the repo:
-
-```python
-# Save metrics & plots so they render on GitHub
-import json, numpy as np, matplotlib.pyplot as plt
-from sklearn.metrics import (accuracy_score, precision_score, recall_score, f1_score,
-                             roc_auc_score, average_precision_score,
-                             roc_curve, precision_recall_curve, confusion_matrix, ConfusionMatrixDisplay)
-import os
-os.makedirs("artifacts", exist_ok=True)
-
-# Ensure proba
-proba = clf.predict_proba(X_test)[:,1]
-
-# Metrics @ 0.5
-pred05 = (proba >= 0.5).astype(int)
-report = {
-  "accuracy": float(accuracy_score(y_test, pred05)),
-  "precision": float(precision_score(y_test, pred05, zero_division=0)),
-  "recall": float(recall_score(y_test, pred05, zero_division=0)),
-  "f1": float(f1_score(y_test, pred05, zero_division=0)),
-  "roc_auc": float(roc_auc_score(y_test, proba)),
-  "pr_auc": float(average_precision_score(y_test, proba))
-}
-
-# ROC + PR side-by-side
-fpr,tpr,_ = roc_curve(y_test, proba)
-prec,rec,thr = precision_recall_curve(y_test, proba)
-fig, axs = plt.subplots(1,2, figsize=(12,4))
-axs[0].plot(fpr,tpr); axs[0].plot([0,1],[0,1],'--'); axs[0].set_title("ROC")
-axs[1].plot(rec,prec); axs[1].set_title("Precision–Recall")
-plt.tight_layout(); plt.savefig("artifacts/roc_pr.png", dpi=160); plt.close()
-
-# Confusion matrix @ best-F1 threshold
-f1s = 2*prec*rec/(prec+rec+1e-9)
-i = int(np.argmax(f1s)); thr_best = thr[i] if i < len(thr) else 0.5
-cm = confusion_matrix(y_test, (proba >= thr_best).astype(int))
-fig, ax = plt.subplots(1,2, figsize=(12,4))
-ConfusionMatrixDisplay(cm, display_labels=['Legit','Fraud']).plot(ax=ax[0], values_format='d')
-ax[0].set_title(f'CM @ best-F1 (thr={thr_best:.3f})')
-cm_norm = (cm.astype(float)/cm.sum(axis=1, keepdims=True))*100
-ConfusionMatrixDisplay(cm_norm, display_labels=['Legit','Fraud']).plot(ax=ax[1], values_format='.1f')
-ax[1].set_title('CM normalized (%)')
-plt.tight_layout(); plt.savefig("artifacts/confusion_matrices.png", dpi=160); plt.close()
-
-with open("artifacts/metrics_report.json","w") as f: json.dump(report, f, indent=2)
-print("Saved: artifacts/roc_pr.png, artifacts/confusion_matrices.png, artifacts/metrics_report.json")
-```
-
-Then commit the `artifacts/` folder so results are visible on GitHub.
-
----
 
 ## 🔁 Extensions
 
@@ -129,12 +75,6 @@ Then commit the `artifacts/` folder so results are visible on GitHub.
 
 > Andrea Dal Pozzolo, Olivier Caelen, Reid A. Johnson, and Gianluca Bontempi. *Calibrating Probability with Undersampling for Unbalanced Classification.* 2015. (Dataset: ULB/Kaggle Credit Card Fraud Detection).  
 > Kaggle dataset link: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
-
----
-
-## ⚖️ License
-
-If you add a license, note it here (e.g., MIT). The Kaggle dataset has its own usage terms—please review them.
 
 ---
 
